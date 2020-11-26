@@ -18,17 +18,12 @@ public class TiendaJava {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Producto nuevo = new Producto(1, 1000, "bicicleta", 5);
+        Producto nuevo = new Producto(5, 1000, "bicicleta", 5);
+        Controlador tienda = new Controlador();
+        System.out.println(nuevo.mostrarDatos());
         Scanner entrada = new Scanner(System.in);
         
-        while(true){
-            String cadena = entrada.nextLine();
-            int resultado = nuevo.getNombre().indexOf(cadena);
-            System.out.println(resultado);
-            if (resultado != -1){
-                System.out.println("Esta");
-            }
-        }
+        tienda.agregar(nuevo);
         
     }
     

@@ -23,7 +23,7 @@ public class Producto {
     }
     
     public String mostrarDatos(){
-        String cadena = Integer.toString(this.id)+" "+ Double.toString(this.precio)+" "+ this.nombre+" "+Integer.toString(this.cantidad);
+        String cadena = Integer.toString(this.id)+", "+ Double.toString(this.precio) +", '"+ this.nombre+"', "+Integer.toString(this.cantidad);
         return cadena;
     }
 

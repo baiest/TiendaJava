@@ -14,6 +14,7 @@ public class VistaTiendaJava extends javax.swing.JFrame {
     Object [][] matriz = {
         {null, null, null, null}
     };
+    String[] field = {"Id", "Nombre", "Precio", "Cantidad"};
     String find = "";
     /**
      * Creates new form VistaTiendaJava
@@ -24,6 +25,12 @@ public class VistaTiendaJava extends javax.swing.JFrame {
         initComponents();
     }
 
+    private void limpiarCampos(){
+        nuevoId.setText("");
+        nuevoCantidad.setText("");
+        nuevoNombre.setText("");
+        nuevoPrecio.setText("");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,11 +49,21 @@ public class VistaTiendaJava extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
+        nuevoId = new javax.swing.JTextField();
+        nuevoNombre = new javax.swing.JTextField();
+        nuevoPrecio = new javax.swing.JTextField();
+        nuevoCantidad = new javax.swing.JTextField();
+        agregar = new javax.swing.JButton();
+        cancelar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setSize(new java.awt.Dimension(500, 500));
 
-        jPanel1.setBackground(new java.awt.Color(24, 24, 249));
+        jPanel1.setBackground(new java.awt.Color(51, 102, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
 
@@ -58,6 +75,9 @@ public class VistaTiendaJava extends javax.swing.JFrame {
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 mostrar(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
             }
         });
 
@@ -108,23 +128,110 @@ public class VistaTiendaJava extends javax.swing.JFrame {
         jTable1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             this.matriz,
-            new String [] {
-                "Id", "Nombre", "Precio", "Cntidad"
-            }
+            this.field
         ));
         jScrollPane1.setViewportView(jTable1);
 
         jPanel4.setBackground(new java.awt.Color(153, 255, 255));
 
+        nuevoId.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        nuevoId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevoIdActionPerformed(evt);
+            }
+        });
+
+        nuevoNombre.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+
+        nuevoPrecio.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        nuevoPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevoPrecioActionPerformed(evt);
+            }
+        });
+
+        nuevoCantidad.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+
+        agregar.setBackground(new java.awt.Color(0, 204, 0));
+        agregar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        agregar.setText("+ Agregar");
+        agregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                agregarMouseClicked(evt);
+            }
+        });
+
+        cancelar.setBackground(new java.awt.Color(255, 0, 0));
+        cancelar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        cancelar.setText("x Cancelar");
+        cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelarMouseClicked(evt);
+            }
+        });
+        cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel3.setText("Id:");
+
+        jLabel4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel4.setText("Precio:");
+
+        jLabel5.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel5.setText("Nombre:");
+
+        jLabel6.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel6.setText("Cantidad:");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nuevoId)
+                    .addComponent(nuevoPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(54, 54, 54)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(nuevoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                    .addComponent(nuevoCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(48, 48, 48)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelar))
+                .addGap(162, 162, 162))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nuevoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nuevoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(agregar))
+                .addGap(16, 16, 16)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nuevoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nuevoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelar))
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -145,7 +252,7 @@ public class VistaTiendaJava extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -164,17 +271,54 @@ public class VistaTiendaJava extends javax.swing.JFrame {
 
     private void mostrar(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mostrar
         // TODO add your handling code here:
-        this.find = jTextField1.getText();
+    }//GEN-LAST:event_mostrar
 
+    private void nuevoIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nuevoIdActionPerformed
+
+    private void nuevoPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoPrecioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nuevoPrecioActionPerformed
+
+    private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cancelarActionPerformed
+
+    private void agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarMouseClicked
+        // TODO add your handling code here:
+        Producto nuevo = new Producto(
+                Integer.parseInt(nuevoId.getText()),
+                Double.valueOf(nuevoPrecio.getText()),
+                nuevoNombre.getText(),
+                Integer.parseInt(nuevoCantidad.getText())
+        );
+        
+        this.tienda.agregar(nuevo);
         this.matriz = this.tienda.buscar(find);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             this.matriz,
-            new String [] {
-                "Id", "Nombre", "Precio", "Cntidad"
-            }
+            this.field
         ));
+        
+        limpiarCampos();
+    }//GEN-LAST:event_agregarMouseClicked
 
-    }//GEN-LAST:event_mostrar
+    private void cancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMouseClicked
+        // TODO add your handling code here:
+        limpiarCampos();
+    }//GEN-LAST:event_cancelarMouseClicked
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        // TODO add your handling code here:
+        this.find = jTextField1.getText();
+        this.matriz = this.tienda.buscar(this.find);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            this.matriz,
+            this.field
+        ));
+    }//GEN-LAST:event_jTextField1KeyReleased
 
     /**
      * @param args the command line arguments
@@ -212,8 +356,14 @@ public class VistaTiendaJava extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton agregar;
+    private javax.swing.JButton cancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -221,5 +371,9 @@ public class VistaTiendaJava extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField nuevoCantidad;
+    private javax.swing.JTextField nuevoId;
+    private javax.swing.JTextField nuevoNombre;
+    private javax.swing.JTextField nuevoPrecio;
     // End of variables declaration//GEN-END:variables
 }

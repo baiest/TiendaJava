@@ -70,7 +70,7 @@ public class Controlador {
             matriz[i][0] = productos.elementAt(i).getId();
             matriz[i][1] = productos.elementAt(i).getNombre();
             matriz[i][2] = productos.elementAt(i).getPrecio();
-            matriz[i][3] = productos.elementAt(i).getId();
+            matriz[i][3] = productos.elementAt(i).getCantidad();
         }
         return matriz;
     }
@@ -78,18 +78,28 @@ public class Controlador {
     public Object[][] buscar(String nombre){
         System.out.println(nombre == "" ?  "Vacio": "--"+nombre);
         Vector<Producto> productos = getProducto();
-        Vector<Producto> encontrado =new Vector<Producto>();
-        int minus, mayus = -1;
+        Vector<Producto> encontrado = new Vector<Producto>();
+        int minus = -1;
+        nombre = nombre.toLowerCase();
         for (Producto p: productos){
             minus = p.getNombre().toLowerCase().indexOf(nombre);
-            mayus = p.getNombre().toUpperCase().indexOf(nombre);
-            if (minus != -1 || mayus != -1){
+            if (minus != -1){
                 encontrado.add(p);
             }
         }
         Object[][] matriz = nombre == "" ? getMatriz(productos): getMatriz(encontrado);
         
         return matriz;
+    }
+    
+    public void agregar(Producto producto){
+        try{
+            Statement sql = conexion.createStatement();
+            ResultSet result = sql.executeQuery("INSERT INTO Producto VALUES ("+producto.mostrarDatos()+")");
+            System.out.println(result);
+        }catch(SQLException e){
+            System.out.println("Error en consulta: " + e);
+        }
     }
 }
 
